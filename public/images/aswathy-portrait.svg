@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF9F4"/>
+      <stop offset="45%" stop-color="#F4DDE5"/>
+      <stop offset="85%" stop-color="#F9E6D7"/>
+      <stop offset="100%" stop-color="#E9E3F4"/>
+    </linearGradient>
+    <radialGradient id="haloGrad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#F4DDE5" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#D79AAF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D6B77A"/>
+      <stop offset="50%" stop-color="#EED8A1"/>
+      <stop offset="100%" stop-color="#C29F5D"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="600" height="800" fill="url(#bgGrad)"/>
+  <circle cx="300" cy="340" r="260" fill="url(#haloGrad)"/>
+
+  <!-- Delicate Border Frame -->
+  <rect x="25" y="25" width="550" height="750" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6"/>
+  <rect x="35" y="35" width="530" height="730" fill="none" stroke="#71384F" stroke-width="0.75" opacity="0.3"/>
+
+  <!-- Corner Botanical Accents -->
+  <g stroke="url(#goldGrad)" stroke-width="1.2" fill="none" opacity="0.75">
+    <path d="M45,45 Q65,45 75,55 T95,65 M45,45 Q45,65 55,75 T65,95"/>
+    <path d="M555,45 Q535,45 525,55 T505,65 M555,45 Q555,65 545,75 T535,95"/>
+    <path d="M45,755 Q65,755 75,745 T95,735 M45,755 Q45,735 55,725 T65,705"/>
+    <path d="M555,755 Q535,755 525,745 T505,735 M555,755 Q555,735 545,725 T535,705"/>
+  </g>
+
+  <!-- Center Arch Frame -->
+  <path d="M 160 520 L 160 280 A 140 140 0 0 1 440 280 L 440 520 A 140 140 0 0 1 160 520 Z" fill="#FFF9F4" stroke="url(#goldGrad)" stroke-width="2" filter="url(#softGlow)" opacity="0.95"/>
+  <path d="M 170 515 L 170 285 A 130 130 0 0 1 430 285 L 430 515 A 130 130 0 0 1 170 515 Z" fill="none" stroke="#D79AAF" stroke-width="1" opacity="0.5"/>
+
+  <!-- Elegant Floral & Monogram Cameo Inside Arch -->
+  <g transform="translate(300, 310)" text-anchor="middle">
+    <!-- Starburst -->
+    <path d="M0,-80 L3,-50 L30,-50 L7,-35 L16,-10 L0,-25 L-16,-10 L-7,-35 L-30,-50 L-3,-50 Z" fill="#D6B77A" opacity="0.7"/>
+    
+    <!-- Botanical Wreath -->
+    <path d="M -60 20 C -75 -20, -50 -60, 0 -70 C 50 -60, 75 -20, 60 20 C 45 60, -45 60, -60 20 Z" fill="none" stroke="#D79AAF" stroke-width="1.2" stroke-dasharray="3 4"/>
+
+    <!-- Central Initial Monogram 'A' -->
+    <text y="28" font-family="'Playfair Display', Georgia, serif" font-size="82" font-style="italic" font-weight="300" fill="#71384F" letter-spacing="2">A</text>
+    
+    <!-- Sub-label -->
+    <text y="68" font-family="'Cinzel', Georgia, serif" font-size="11" font-weight="600" fill="#D6B77A" letter-spacing="6">ASWATHY</text>
+  </g>
+
+  <!-- Bottom Arch Inscription -->
+  <g transform="translate(300, 485)" text-anchor="middle">
+    <line x1="-80" y1="0" x2="80" y2="0" stroke="url(#goldGrad)" stroke-width="1" opacity="0.6"/>
+    <circle cx="0" cy="0" r="3" fill="#71384F"/>
+    <text y="28" font-family="'Playfair Display', Georgia, serif" font-size="16" font-style="italic" fill="#30252B" opacity="0.85">A Little Universe of Happiness</text>
+  </g>
+
+  <!-- Bottom Dedication Banner -->
+  <g transform="translate(300, 630)" text-anchor="middle">
+    <text y="0" font-family="'Cinzel', Georgia, serif" font-size="13" font-weight="600" fill="#71384F" letter-spacing="4">PORTRAIT RESERVED FOR ASWATHY</text>
+    <text y="26" font-family="sans-serif" font-size="11" font-weight="400" fill="#71384F" opacity="0.7" letter-spacing="1.5">DROP YOUR PHOTO IN /PUBLIC/IMAGES/ASWATHY-PORTRAIT.JPG</text>
+    <text y="48" font-family="'Playfair Display', Georgia, serif" font-size="14" font-style="italic" fill="#C29F5D">“Today, the world celebrates you.”</text>
+  </g>
+
+  <!-- Floating Stardust / Sparkles -->
+  <circle cx="120" cy="180" r="2" fill="#D6B77A" opacity="0.8"/>
+  <circle cx="480" cy="200" r="2.5" fill="#D79AAF" opacity="0.7"/>
+  <circle cx="140" cy="620" r="1.8" fill="#D6B77A" opacity="0.6"/>
+  <circle cx="460" cy="590" r="2.2" fill="#71384F" opacity="0.5"/>
+</svg>

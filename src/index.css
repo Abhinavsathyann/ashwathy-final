@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-script: "Alex Brush", cursive;
+
+  --color-ivory: #FFF9F4;
+  --color-blush: #F4DDE5;
+  --color-rose: #D79AAF;
+  --color-berry: #71384F;
+  --color-gold: #D6B77A;
+  --color-lavender: #E9E3F4;
+  --color-peach: #F9E6D7;
+  --color-dark: #30252B;
+}
+
+@layer base {
+  body {
+    background-color: #FFF9F4;
+    color: #30252B;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+}
+
+/* Subtle organic paper grain overlay */
+.bg-grain {
+  background-image: radial-gradient(rgba(113, 56, 79, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Delicate custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF9F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #E9E3F4;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D79AAF;
+}
+
+/* Floating animation keyframes */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+}
+
+@keyframes float-balloon-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(1.5deg);
+  }
+}
+
+@keyframes float-balloon-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-24px) rotate(-2deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 7s ease-in-out infinite;
+}
+
+.animate-balloon-1 {
+  animation: float-balloon-1 8s ease-in-out infinite;
+}
+
+.animate-balloon-2 {
+  animation: float-balloon-2 9.5s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-gentle,
+  .animate-balloon-1,
+  .animate-balloon-2,
+  .animate-pulse-soft {
+    animation: none !important;
+  }
+}

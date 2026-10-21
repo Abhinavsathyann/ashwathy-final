@@ -1,0 +1,6 @@
+{
+  "name": "Aswathy — A Little Universe of Happiness",
+  "description": "A bespoke, poetic digital birthday celebration and universe of warmth created for Aswathy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

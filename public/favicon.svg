@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <radialGradient id="favBg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stopColor="#8C4963" />
+      <stop offset="100%" stopColor="#71384F" />
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#favBg)" />
+  <circle cx="32" cy="32" r="28" stroke="#D6B77A" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3 3" />
+  <text x="32" y="44" font-family="'Cormorant Garamond', Georgia, serif" font-size="34" font-style="italic" font-weight="500" fill="#FFF9F4" text-anchor="middle">A</text>
+  <path d="M48 16L49.5 21L54.5 22.5L49.5 24L48 29L46.5 24L41.5 22.5L46.5 21L48 16Z" fill="#D6B77A" />
+</svg>
