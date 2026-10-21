@@ -74,7 +74,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenCelebration }) => 
               {BIRTHDAY_CONFIG.recipient.name.toUpperCase()}
             </span>
             <span className="text-xs uppercase tracking-widest text-[#D6B77A] hidden sm:inline-block font-sans font-medium whitespace-nowrap">
-              · Memory Edition
+              
             </span>
           </button>
 
