@@ -222,12 +222,7 @@ export const PhotoFeature: React.FC = () => {
             <p className="text-[#30252B]/80 font-serif text-lg leading-relaxed mb-6">
               Some people enter a room and bring an unmistakable calm. Your kindness, laughter, and authentic self inspire everyone around you.
             </p>
-            <div className="p-4 bg-[#F4DDE5]/30 border border-[#D79AAF]/30 rounded-xs">
-              <p className="text-xs font-sans text-[#71384F] leading-relaxed">
-                <strong>Photo Note:</strong> This frame is ready to showcase Aswathy's picture. Simply drop your favorite portrait into{' '}
-                <code className="text-[#71384F] font-mono text-[11px]">/public/images/aswathy-portrait.jpg</code>.
-              </p>
-            </div>
+            
           </div>
         </div>
       </div>
