@@ -1,4 +1,9 @@
 
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import React, { useEffect, useState } from "react";
 import {
   AnimatePresence,
@@ -28,6 +33,7 @@ export const FlowerGiftIntro: React.FC<FlowerGiftIntroProps> = ({
   const [received, setReceived] = useState(false);
   const reduceMotion = useReducedMotion();
 
+  // Move to the birthday website after the flower gift animation.
   useEffect(() => {
     if (!received) return;
 
@@ -38,8 +44,12 @@ export const FlowerGiftIntro: React.FC<FlowerGiftIntroProps> = ({
     return () => window.clearTimeout(timer);
   }, [received, onReceive]);
 
+  // Start the background music when the visitor clicks the flower.
   const handleReceive = () => {
-    if (!received) setReceived(true);
+    if (received) return;
+
+    window.dispatchEvent(new Event("birthday-music-start"));
+    setReceived(true);
   };
 
   return (
@@ -131,22 +141,24 @@ export const FlowerGiftIntro: React.FC<FlowerGiftIntroProps> = ({
 
             <motion.button
               type="button"
-              className={`flower-button ${received ? "is-received" : ""}`}
+              className="flower-button"
               onClick={handleReceive}
               aria-label="Receive your flower"
               whileHover={
-                reduceMotion
-                  ? undefined
-                  : { scale: 1.045, y: -5 }
+                reduceMotion ? undefined : { scale: 1.045, y: -5 }
               }
               whileTap={
-                reduceMotion
-                  ? undefined
-                  : { scale: 0.96 }
+                reduceMotion ? undefined : { scale: 0.96 }
               }
             >
-              <span className="flower-button-ring ring-one" aria-hidden="true" />
-              <span className="flower-button-ring ring-two" aria-hidden="true" />
+              <span
+                className="flower-button-ring ring-one"
+                aria-hidden="true"
+              />
+              <span
+                className="flower-button-ring ring-two"
+                aria-hidden="true"
+              />
               <span className="flower-aura" aria-hidden="true" />
               <span className="flower-ground-glow" aria-hidden="true" />
 
@@ -188,6 +200,7 @@ export const FlowerGiftIntro: React.FC<FlowerGiftIntroProps> = ({
                   <span className="flower-heart">
                     <span className="flower-heart-center" />
                   </span>
+
                   <span className="flower-highlight" />
                 </span>
 
@@ -196,9 +209,7 @@ export const FlowerGiftIntro: React.FC<FlowerGiftIntroProps> = ({
                 <span className="flower-floating-heart heart-three">♡</span>
               </span>
 
-              <span className="flower-click-label">
-                {received ? "WITH LOVE ♡" : "YOUR FLOWER"}
-              </span>
+              <span className="flower-click-label">YOUR FLOWER</span>
             </motion.button>
 
             <AnimatePresence mode="wait">
@@ -212,12 +223,15 @@ export const FlowerGiftIntro: React.FC<FlowerGiftIntroProps> = ({
                   transition={{ duration: 0.65, ease: "easeOut" }}
                 >
                   <span className="flower-message-heart">♡</span>
+
                   <p className="flower-message-title">
                     This little flower is yours.
                   </p>
+
                   <p className="flower-message-copy">
                     A small gift, with a whole lot of love.
                   </p>
+
                   <span className="flower-message-subtitle">
                     Your little birthday world is waiting…
                   </span>

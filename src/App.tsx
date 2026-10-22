@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { ScrollProgress } from './components/ScrollProgress';
 import { Navigation } from './components/Navigation';
@@ -21,6 +21,8 @@ import { InteractiveGift } from './components/InteractiveGift';
 import { ClosingScene } from './components/ClosingScene';
 import { FooterSection } from './components/FooterSection';
 
+import BackgroundMusic from './components/BackgroundMusic';
+
 import {
   PhotoViewerModal,
   type PhotoItem,
@@ -34,16 +36,16 @@ import { BIRTHDAY_CONFIG } from './data/birthdayContent';
 import { FlowerGiftIntro } from './components/FlowerGiftIntro';
 
 export default function App() {
-  // Show only the flower intro when the website first loads.
+  // Flower intro state
   const [flowerReceived, setFlowerReceived] = useState(false);
 
-  // Birthday website interaction states.
+  // Birthday website interaction states
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [viewerPhotoIndex, setViewerPhotoIndex] = useState<number | null>(
     null
   );
 
-  // Combine gallery photos and scrapbook items for the photo viewer.
+  // Combine gallery photos and scrapbook items for the photo viewer
   const allViewerPhotos: PhotoItem[] = [
     ...BIRTHDAY_CONFIG.gallery.photos,
     ...BIRTHDAY_CONFIG.scrapbook.items.map((item) => ({
@@ -55,7 +57,7 @@ export default function App() {
     })),
   ];
 
-  // Open a photo in the viewer.
+  // Open a photo in the viewer
   const handleOpenPhoto = (photo: PhotoItem) => {
     const index = allViewerPhotos.findIndex(
       (item) => item.id === photo.id
@@ -64,8 +66,8 @@ export default function App() {
     setViewerPhotoIndex(index !== -1 ? index : 0);
   };
 
-  // Lock scrolling while the flower intro or a modal is open.
-  React.useEffect(() => {
+  // Lock scrolling while the flower intro or a modal is open
+  useEffect(() => {
     const shouldLockScroll =
       !flowerReceived ||
       celebrationOpen ||
@@ -78,7 +80,7 @@ export default function App() {
     };
   }, [flowerReceived, celebrationOpen, viewerPhotoIndex]);
 
-  // Return to the top of the birthday website.
+  // Return to the top of the birthday website
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -86,99 +88,99 @@ export default function App() {
     });
   };
 
-  // Called when the recipient accepts the flower.
+  // Called when the recipient accepts the flower
   const handleReceiveFlower = () => {
-    // Ensure the birthday website starts at the top.
     window.scrollTo({
       top: 0,
       behavior: 'auto',
     });
 
-    // Only now allow the birthday website to render.
     setFlowerReceived(true);
   };
 
-  // IMPORTANT:
-  // Keep the main website completely unmounted until the flower is received.
-  // This prevents background animations, WebGL, and page content from loading
-  // behind the flower intro.
-  if (!flowerReceived) {
-    return <FlowerGiftIntro onReceive={handleReceiveFlower} />;
-  }
-
-  // The birthday website mounts only after the flower is received.
   return (
-    <div className="min-h-screen relative overflow-x-hidden bg-[#FFF9F4] font-sans text-[#30252B] selection:bg-[#F4DDE5] selection:text-[#71384F]">
-      {/* Scroll depth progress indicator */}
-      <ScrollProgress />
+    <>
+      {/* Keep music mounted during the intro and main website */}
+      <BackgroundMusic />
 
-      {/* 3D Celestial Stardust & Universe Canvas */}
-      <UniverseCanvas />
+      {/* Show only the flower intro until the flower is received */}
+      {!flowerReceived ? (
+        <FlowerGiftIntro onReceive={handleReceiveFlower} />
+      ) : (
+        /* Main birthday website mounts after the flower is received */
+        <div className="min-h-screen relative overflow-x-hidden bg-[#FFF9F4] font-sans text-[#30252B] selection:bg-[#F4DDE5] selection:text-[#71384F]">
+          {/* Scroll depth progress indicator */}
+          <ScrollProgress />
 
-      {/* Floating decorative elements */}
-      <FloatingDecorations />
+          {/* 3D Celestial Stardust & Universe Canvas */}
+          <UniverseCanvas />
 
-      {/* Main navigation */}
-      <Navigation
-        onOpenCelebration={() => setCelebrationOpen(true)}
-      />
+          {/* Floating decorative elements */}
+          <FloatingDecorations />
 
-      {/* Main birthday website sections */}
-      <main>
-        {/* Chapter I: Cinematic Portrait Hero */}
-        <BirthdayHero />
+          {/* Main navigation */}
+          <Navigation
+            onOpenCelebration={() => setCelebrationOpen(true)}
+          />
 
-        {/* Chapter II: Pinned Story Scene */}
-        <PinnedStoryScene />
+          {/* Main birthday website sections */}
+          <main>
+            {/* Chapter I: Cinematic Portrait Hero */}
+            <BirthdayHero />
 
-        {/* Chapter III: Archival Photo Feature */}
-        <PhotoFeature />
+            {/* Chapter II: Pinned Story Scene */}
+            <PinnedStoryScene />
 
-        {/* Photo Gallery */}
-        <PhotoGallery onPhotoClick={handleOpenPhoto} />
+            {/* Chapter III: Archival Photo Feature */}
+            <PhotoFeature />
 
-        {/* Scrapbook Memories */}
-        <ScrapbookSection onPhotoClick={handleOpenPhoto} />
+            {/* Photo Gallery */}
+            <PhotoGallery onPhotoClick={handleOpenPhoto} />
 
-        {/* Birthday Letter */}
-        <BirthdayWishSection />
+            {/* Scrapbook Memories */}
+            <ScrapbookSection onPhotoClick={handleOpenPhoto} />
 
-        {/* Floating Balloons */}
-        <BalloonReleaseSection />
+            {/* Birthday Letter */}
+            <BirthdayWishSection />
 
-        {/* Birthday Cake and Celebration */}
-        <BirthdayCakeSection
-          onTriggerCelebration={() => setCelebrationOpen(true)}
-        />
+            {/* Floating Balloons */}
+            <BalloonReleaseSection />
 
-        {/* Interactive Magical Gift */}
-        <InteractiveGift />
+            {/* Birthday Cake and Celebration */}
+            <BirthdayCakeSection
+              onTriggerCelebration={() => setCelebrationOpen(true)}
+            />
 
-        {/* Cinematic Closing Scene */}
-        <ClosingScene onReturnTop={handleScrollToTop} />
-      </main>
+            {/* Interactive Magical Gift */}
+            <InteractiveGift />
 
-      {/* Website Footer */}
-      <FooterSection />
+            {/* Cinematic Closing Scene */}
+            <ClosingScene onReturnTop={handleScrollToTop} />
+          </main>
 
-      {/* Celebration and Sound Controls */}
-      <BottomDock
-        onOpenCelebration={() => setCelebrationOpen(true)}
-      />
+          {/* Website Footer */}
+          <FooterSection />
 
-      {/* Photo Viewer Modal */}
-      <PhotoViewerModal
-        photos={allViewerPhotos}
-        currentIndex={viewerPhotoIndex}
-        onClose={() => setViewerPhotoIndex(null)}
-        onNavigate={(newIndex) => setViewerPhotoIndex(newIndex)}
-      />
+          {/* Celebration and Sound Controls */}
+          <BottomDock
+            onOpenCelebration={() => setCelebrationOpen(true)}
+          />
 
-      {/* Birthday Celebration Modal */}
-      <CelebrationModal
-        isOpen={celebrationOpen}
-        onClose={() => setCelebrationOpen(false)}
-      />
-    </div>
+          {/* Photo Viewer Modal */}
+          <PhotoViewerModal
+            photos={allViewerPhotos}
+            currentIndex={viewerPhotoIndex}
+            onClose={() => setViewerPhotoIndex(null)}
+            onNavigate={(newIndex) => setViewerPhotoIndex(newIndex)}
+          />
+
+          {/* Birthday Celebration Modal */}
+          <CelebrationModal
+            isOpen={celebrationOpen}
+            onClose={() => setCelebrationOpen(false)}
+          />
+        </div>
+      )}
+    </>
   );
 }
