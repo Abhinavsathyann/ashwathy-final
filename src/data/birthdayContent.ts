@@ -388,7 +388,7 @@ export const BIRTHDAY_CONFIG: BirthdayConfig = {
   },
   footer: {
     message: "Made with a little extra love, just for Aswathy.",
-    year: "2026",
-    dedication: "Crafted exclusively for Aswathy's special day",
+    year: "",
+    dedication: "",
   },
 };
